@@ -17,8 +17,13 @@ va_start(args, format);
 
 while (format[i])
 {
-if (format[i] == '%' && format[i + 1])
+if (format[i] == '%')
 {
+if (format[i + 1] == '\0')
+{
+va_end(args);
+return (-1);
+}
 i++;
 switch (format[i])
 {
@@ -40,10 +45,4 @@ break;
 else
 {
 count += write(1, &format[i], 1);
-}
-i++;
-}
-
-va_end(args);
-return (count);
 }
