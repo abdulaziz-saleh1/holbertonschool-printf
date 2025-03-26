@@ -4,6 +4,7 @@
 * handle_specifier - Handles format specifiers for _printf
 * @spec: The format specifier
 * @args: List of arguments
+*
 * Return: Number of characters printed
 */
 int handle_specifier(char spec, va_list args)
@@ -21,6 +22,10 @@ break;
 case '%':
 count += print_percent();
 break;
+case 'd':
+case 'i':
+count += print_int(va_arg(args, int));
+break;
 default:
 count += write(1, "%", 1);
 count += write(1, &spec, 1);
@@ -31,8 +36,9 @@ return (count);
 }
 
 /**
-* _printf - Custom printf function (supports %c, %s, %%)
+* _printf - Custom printf function (supports %c, %s, %, d, i)
 * @format: Format string
+*
 * Return: Number of characters printed, or -1 on error
 */
 int _printf(const char *format, ...)
