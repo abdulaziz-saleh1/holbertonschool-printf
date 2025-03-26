@@ -17,5 +17,6 @@ int print_binary_buffer(unsigned int n, char *buffer, int *index);
 int print_unsigned_buffer(unsigned int n, int base, int uppercase,
                           char *buffer, int *index);
 int handle_specifier(char spec, va_list args, char *buffer, int *index);
+void buffer_char(char *buffer, char c, int *index, int *count);
 
 #endif 
