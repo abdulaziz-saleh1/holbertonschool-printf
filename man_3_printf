@@ -34,7 +34,7 @@ _printf("Value: %d\n", 42);
 => Prints: Value: 42
 
 .SH AUTHOR
-Written by Holberton School students.
+Written by  Abdulaziz saleh Alzahrani, Muhannad Gsgs.
 
 .SH SEE ALSO
 printf(3), write(2), stdarg(3)
