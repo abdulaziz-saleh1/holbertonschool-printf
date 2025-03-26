@@ -26,6 +26,9 @@ case 'd':
 case 'i':
 count += print_int(va_arg(args, int));
 break;
+case 'b':
+count += print_binary(va_arg(args, unsigned int));
+break;
 default:
 count += write(1, "%", 1);
 count += write(1, &spec, 1);
@@ -36,7 +39,7 @@ return (count);
 }
 
 /**
-* _printf - Custom printf function (supports %c, %s, %, d, i)
+* _printf - Custom printf function (supports %c, %s, %, d, i, b)
 * @format: Format string
 *
 * Return: Number of characters printed, or -1 on error
