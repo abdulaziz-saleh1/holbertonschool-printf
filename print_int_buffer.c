@@ -1,13 +1,5 @@
 #include "main.h"
 
-/**
-* print_int_buffer - Prints an integer to buffer
-* @n: The integer to print
-* @buffer: The output buffer
-* @index: Pointer to current index in buffer
-*
-* Return: Number of characters added
-*/
 int print_int_buffer(int n, char *buffer, int *index)
 {
 int count = 0;
