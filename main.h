@@ -12,5 +12,5 @@ int print_int(int n);
 int print_binary(unsigned int n);
 int print_unsigned_base(unsigned int n, int base, int uppercase);
 int print_int_buffer(int n, char *buffer, int *index);
-int handle_specifier(char spec, va_list args, char *buffer, int *index);
+
 #endif
