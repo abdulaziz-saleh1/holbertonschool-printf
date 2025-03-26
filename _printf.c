@@ -46,3 +46,6 @@ else
 {
 count += write(1, &format[i], 1);
 }
+va_end(args);
+return (count);
+}
