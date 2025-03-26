@@ -1,7 +1,7 @@
-.TH _PRINTF 3 "March 2025" "Custom Printf Project - Holberton School" "Re-implementation of printf in C"
+.TH _PRINTF 3 "March 2025" "Holberton School" "Custom Printf Project"
 
 .SH NAME
-_printf \- custom implementation of the C printf function
+_printf \- Custom implementation of the standard C printf function.
 
 .SH SYNOPSIS
 .B #include "main.h"
@@ -11,37 +11,30 @@ _printf \- custom implementation of the C printf function
 .SH DESCRIPTION
 The
 .B _printf
-function produces output according to a format. This function writes output to stdout, the standard output stream.
+function is a simplified version of the standard C library printf function.
+It writes output to the standard output stream (stdout), based on a format string and a variable number of arguments.
 
-The format string is composed of zero or more directives. Ordinary characters are copied directly to the output. A directive starts with a percent sign (%) and is followed by a conversion specifier.
+Supported conversion specifiers:
 
-Supported format specifiers:
-
-.TP
-.B %c
-Prints a single character.
-
-.TP
-.B %s
-Prints a string of characters.
-
-.TP
-.B %%
-Prints a percent sign.
-
-.TP
-.B %d
-Prints a decimal (base 10) integer.
-
-.TP
-.B %i
-Prints an integer.
+- %c: Prints a single character  
+- %s: Prints a string  
+- %%: Prints the percent symbol  
+- %d: Prints a decimal integer  
+- %i: Prints an integer (same as %d)
 
 .SH RETURN VALUE
-Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings). If an error occurs, a negative value is returned.
+Returns the number of characters printed (excluding the null byte).
+Returns -1 if an error occurs (e.g., invalid format string).
+
+.SH EXAMPLES
+_printf("Hello %s!\n", "world");  
+=> Prints: Hello world!
+
+_printf("Value: %d\n", 42);  
+=> Prints: Value: 42
 
 .SH AUTHOR
 Written by Holberton School students.
 
 .SH SEE ALSO
-printf(3)
+printf(3), write(2), stdarg(3)
