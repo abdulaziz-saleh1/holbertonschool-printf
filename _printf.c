@@ -29,6 +29,18 @@ break;
 case 'b':
 count += print_binary(va_arg(args, unsigned int));
 break;
+case 'u':
+count += print_unsigned_base(va_arg(args, unsigned int), 10, 0);
+break;
+case 'o':
+count += print_unsigned_base(va_arg(args, unsigned int), 8, 0);
+break;
+case 'x':
+count += print_unsigned_base(va_arg(args, unsigned int), 16, 0);
+break;
+case 'X':
+count += print_unsigned_base(va_arg(args, unsigned int), 16, 1);
+break;
 default:
 count += write(1, "%", 1);
 count += write(1, &spec, 1);
@@ -39,7 +51,7 @@ return (count);
 }
 
 /**
-* _printf - Custom printf function (supports %c, %s, %, d, i, b)
+* _printf - Custom printf function
 * @format: Format string
 *
 * Return: Number of characters printed, or -1 on error
