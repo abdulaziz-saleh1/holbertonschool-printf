@@ -69,7 +69,7 @@ count += print_S(va_arg(args, char *), buffer, index);
 break;
 
 case 'b':
-count += print_binary(va_arg(args, unsigned int), buffer, index);
+count += print_binary(va_arg(args, unsigned int));
 break;
 
 default:
