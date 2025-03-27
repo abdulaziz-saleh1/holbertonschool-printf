@@ -52,8 +52,8 @@ case 'p':
 count += print_p(va_arg(args, void *), buffer, index);
 break;
 default:
-count += buffer_char(buffer, '%', index, &count);
-count += buffer_char(buffer, spec, index, &count);
+buffer_char(buffer, '%', index, &count);
+buffer_char(buffer, spec, index, &count);
 break;
 }
 return (count);
