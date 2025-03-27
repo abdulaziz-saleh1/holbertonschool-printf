@@ -9,7 +9,7 @@
  * @index: Pointer to buffer index
  * Return: Characters printed
  */
-int print_unsigned_buffer(unsigned int n, int base, int uppercase,
+int print_unsigned_buffer(unsigned long n, int base, int uppercase,
                           char *buffer, int *index)
 {
 	char *digits;
