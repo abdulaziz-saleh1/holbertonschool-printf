@@ -1,10 +1,14 @@
 #include "main.h"
 
 /**
- * print_percent - Prints a percent sign
- * Return: Number of characters printed (1)
+ * print_percent - Writes a percent sign to buffer
+ * @buffer: output buffer
+ * @index: buffer index
+ * Return: number of characters written
  */
-int print_percent(void)
+int print_percent(char *buffer, int *index)
 {
-return (write(1, "%", 1));
+int count = 0;
+buffer_char(buffer, '%', index, &count);
+return (count);
 }

@@ -1,31 +1,27 @@
 #include "main.h"
 
-/**
-* print_binary - Converts unsigned int to binary and prints it
-* @n: The unsigned int to convert
-*
-* Return: Number of characters printed
-*/
-int print_binary(unsigned int n)
+int print_binary(unsigned int n, char *buffer, int *index)
 {
-int i, count = 0;
-unsigned int mask = 1 << 31;
-int started = 0;
+int count = 0;
+int binary[32];
+int i = 0, started = 0;
 
 if (n == 0)
-return (write(1, "0", 1));
+return (print_char('0', buffer, index));
 
-for (i = 0; i < 32; i++)
+while (n > 0)
 {
-if (n & (mask >> i))
+binary[i++] = n % 2;
+n /= 2;
+}
+
+while (--i >= 0)
 {
+if (binary[i] == 1)
 started = 1;
-count += print_char('1');
-}
-else if (started)
-{
-count += print_char('0');
-}
+
+if (started)
+count += print_char(binary[i] + '0', buffer, index);
 }
 
 return (count);
