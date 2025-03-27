@@ -2,17 +2,18 @@
 #include <stdarg.h>
 
 /**
- * handle_specifier - Selects the correct function to handle format specifier
- * @spec: format specifier character
- * @args: argument list
- * @buffer: output buffer
- * @index: buffer index
+ * handle_specifier - Handles format specifiers
+ * @spec: the format specifier character
+ * @args: list of arguments
+ * @buffer: buffer to store output
+ * @index: current buffer index
  *
- * Return: number of characters printed
+ * Return: number of characters written to buffer
  */
 int handle_specifier(char spec, va_list args, char *buffer, int *index)
 {
 int count = 0;
+flags_t flags = {0, 0, 0};
 
 switch (spec)
 {
@@ -27,22 +28,22 @@ count += print_percent(buffer, index);
 break;
 case 'd':
 case 'i':
-count += print_int(va_arg(args, int), buffer, index);
+count += print_int(va_arg(args, int), flags, buffer, index);
 break;
 case 'b':
 count += print_binary(va_arg(args, unsigned int), buffer, index);
 break;
 case 'u':
-count += print_unsigned(va_arg(args, unsigned int), 10, 0, buffer, index);
+count += print_unsigned(va_arg(args, unsigned int), 10, 0, flags, buffer, index);
 break;
 case 'o':
-count += print_unsigned(va_arg(args, unsigned int), 8, 0, buffer, index);
+count += print_unsigned(va_arg(args, unsigned int), 8, 0, flags, buffer, index);
 break;
 case 'x':
-count += print_unsigned(va_arg(args, unsigned int), 16, 0, buffer, index);
+count += print_unsigned(va_arg(args, unsigned int), 16, 0, flags, buffer, index);
 break;
 case 'X':
-count += print_unsigned(va_arg(args, unsigned int), 16, 1, buffer, index);
+count += print_unsigned(va_arg(args, unsigned int), 16, 1, flags, buffer, index);
 break;
 case 'S':
 count += print_S(va_arg(args, char *), buffer, index);
@@ -55,6 +56,5 @@ count += buffer_char(buffer, '%', index, &count);
 count += buffer_char(buffer, spec, index, &count);
 break;
 }
-
 return (count);
 }
