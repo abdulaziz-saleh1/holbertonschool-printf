@@ -1,19 +1,23 @@
 #include "main.h"
 #include <stdarg.h>
 
-/**
- * handle_specifier - Handles format specifiers
- * @spec: the format specifier character
- * @args: list of arguments
- * @buffer: buffer to store output
- * @index: current buffer index
- *
- * Return: number of characters written to buffer
- */
 int handle_specifier(char spec, va_list args, char *buffer, int *index)
 {
 int count = 0;
 flags_t flags = {0, 0, 0};
+int i = *index;
+
+while (spec == ' ' || spec == '+' || spec == '#')
+{
+if (spec == '+')
+flags.plus = 1;
+else if (spec == ' ')
+flags.space = 1;
+else if (spec == '#')
+flags.hash = 1;
+
+spec = va_arg(args, int);
+}
 
 switch (spec)
 {
@@ -54,7 +58,9 @@ break;
 default:
 buffer_char(buffer, '%', index, &count);
 buffer_char(buffer, spec, index, &count);
+count += 2;
 break;
 }
+*index = i;
 return (count);
 }

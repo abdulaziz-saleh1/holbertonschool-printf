@@ -1,15 +1,11 @@
 #include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
 
-/**
-* _printf - Custom printf function using 1024-char local buffer
-* @format: Format string
-*
-* Return: Number of characters printed, or -1 on error
-*/
 int _printf(const char *format, ...)
 {
 char buffer[1024];
-int i = 0, index = 0, count = 0;
+int index = 0, i = 0, count = 0;
 va_list args;
 
 if (!format)
@@ -23,23 +19,24 @@ if (format[i] == '%')
 {
 i++;
 if (!format[i])
-{
-va_end(args);
-return (-1);
-}
+break;
 count += handle_specifier(format[i], args, buffer, &index);
 }
 else
 {
-buffer_char(buffer, format[i], &index, &count);
+buffer[index++] = format[i];
+if (index == 1024)
+{
+count += flush_buffer(buffer, index);
+index = 0;
+}
 }
 i++;
 }
 
-va_end(args);
-
 if (index > 0)
-flush_buffer(buffer, index);
+count += flush_buffer(buffer, index);
 
+va_end(args);
 return (count);
 }
