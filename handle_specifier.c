@@ -5,18 +5,21 @@ int handle_specifier(char spec, va_list args, char *buffer, int *index)
 {
 int count = 0;
 flags_t flags = {0, 0, 0};
-int i = *index;
 
-while (spec == ' ' || spec == '+' || spec == '#')
+switch (spec)
 {
-if (spec == '+')
+case '+':
 flags.plus = 1;
-else if (spec == ' ')
-flags.space = 1;
-else if (spec == '#')
-flags.hash = 1;
-
 spec = va_arg(args, int);
+break;
+case ' ':
+flags.space = 1;
+spec = va_arg(args, int);
+break;
+case '#':
+flags.hash = 1;
+spec = va_arg(args, int);
+break;
 }
 
 switch (spec)
@@ -61,6 +64,6 @@ buffer_char(buffer, spec, index, &count);
 count += 2;
 break;
 }
-*index = i;
+
 return (count);
 }

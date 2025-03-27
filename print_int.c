@@ -1,26 +1,24 @@
 #include "main.h"
 
-/**
- * print_int - prints a signed integer with flags (+ and space)
- * @n: the integer to print
- * @flags: struct containing the active flags
- * @buffer: buffer to write characters to
- * @index: pointer to current index in the buffer
- *
- * Return: number of characters written
- */
 int print_int(int n, flags_t flags, char *buffer, int *index)
 {
 int count = 0;
+unsigned int num;
 
 if (n >= 0)
 {
 if (flags.plus)
-buffer_char(buffer, '+', index, &count);
+count += buffer_char(buffer, '+', index);
 else if (flags.space)
-buffer_char(buffer, ' ', index, &count);
+count += buffer_char(buffer, ' ', index);
+num = n;
+}
+else
+{
+count += buffer_char(buffer, '-', index);
+num = -n;
 }
 
-count += print_int_buffer(n, buffer, index);
+count += print_unsigned_buffer(num, 10, 0, buffer, index);
 return (count);
 }
