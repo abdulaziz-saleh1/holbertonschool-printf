@@ -1,0 +1,66 @@
+.TH _PRINTF 3 "March 2025" "Custom Printf Project - Holberton School" "Re-implementation of printf in C"
+
+.SH NAME
+_printf \- produces output according to a format
+
+.SH SYNOPSIS
+.B #include "main.h"
+
+.B int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+The
+.B _printf
+function produces output according to a format string, similarly to the standard C library printf.
+
+The format string can include ordinary characters (which are printed as-is) and conversion specifiers (which begin with '%' and determine how the subsequent arguments are printed).
+
+Supported specifiers:
+.TP
+.B c
+Print a single character
+.TP
+.B s
+Print a string
+.TP
+.B %
+Print a literal '%'
+.TP
+.B d, i
+Print an integer in decimal
+.TP
+.B u
+Print an unsigned integer
+.TP
+.B o
+Print an unsigned octal
+.TP
+.B x, X
+Print an unsigned hexadecimal (lowercase or uppercase)
+.TP
+.B b
+Print an unsigned integer in binary
+.TP
+.B S
+Print a string with non-printable characters as \xNN
+.TP
+.B p
+Print a pointer address
+
+.SH RETURN VALUE
+Returns the total number of characters printed (excluding the null byte).
+
+.SH EXAMPLES
+.B _printf("Hello, %s\n", "world");
+.RS
+Prints: Hello, world
+
+.B _printf("Number: %d\n", 1024);
+.RS
+Prints: Number: 1024
+
+.SH AUTHOR
+Muhannad Gsgs, Abdulaziz Alzahrani
+
+.SH SEE ALSO
+printf(3)
